@@ -12,12 +12,12 @@ struct ProviderCardView: View {
             if let snapshot = snapshot {
                 DoubleRingView(
                     title: name,
-                    innerProgress: PercentageFormatter.ringProgress(for: snapshot.innerMetric.percentUsed),
-                    outerProgress: PercentageFormatter.ringProgress(for: snapshot.outerMetric.percentUsed),
+                    innerProgress: PercentageFormatter.remainingRingProgress(for: snapshot.innerMetric.percentUsed),
+                    outerProgress: PercentageFormatter.remainingRingProgress(for: snapshot.outerMetric.percentUsed),
                     innerColor: innerColor,
                     outerColor: outerColor,
-                    innerAccessibilityLabel: "\(name) \(snapshot.innerMetric.title)，已使用 \(PercentageFormatter.displayText(for: snapshot.innerMetric.percentUsed))",
-                    outerAccessibilityLabel: "\(name) \(snapshot.outerMetric.title)，已使用 \(PercentageFormatter.displayText(for: snapshot.outerMetric.percentUsed))"
+                    innerAccessibilityLabel: "\(name) \(snapshot.innerMetric.title)，剩余 \(PercentageFormatter.remainingDisplayText(for: snapshot.innerMetric.percentUsed))",
+                    outerAccessibilityLabel: "\(name) \(snapshot.outerMetric.title)，剩余 \(PercentageFormatter.remainingDisplayText(for: snapshot.outerMetric.percentUsed))"
                 )
                 metricRow(snapshot.innerMetric)
                 metricRow(snapshot.outerMetric)
@@ -58,11 +58,11 @@ struct ProviderCardView: View {
 
     private func metricRow(_ metric: UsageMetric) -> some View {
         HStack {
-            Text(metric.title)
+            Text("\(metric.title) 剩余")
                 .font(.caption)
                 .foregroundStyle(.secondary)
             Spacer()
-            Text(PercentageFormatter.displayText(for: metric.percentUsed))
+            Text(PercentageFormatter.remainingDisplayText(for: metric.percentUsed))
                 .font(.caption.monospacedDigit())
         }
     }

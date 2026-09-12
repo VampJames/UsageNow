@@ -28,16 +28,16 @@ struct StatusBarHoverView: View {
                     .foregroundStyle(.secondary)
             case .available(let snapshot), .stale(let snapshot, _):
                 HStack {
-                    Text(snapshot.innerMetric.title)
+                    Text("\(snapshot.innerMetric.title) 剩余")
                     Spacer()
-                    Text(PercentageFormatter.displayText(for: snapshot.innerMetric.percentUsed))
+                    Text(PercentageFormatter.remainingDisplayText(for: snapshot.innerMetric.percentUsed))
                         .monospacedDigit()
                 }
                 .font(.caption)
                 HStack {
-                    Text(snapshot.outerMetric.title)
+                    Text("\(snapshot.outerMetric.title) 剩余")
                     Spacer()
-                    Text(PercentageFormatter.displayText(for: snapshot.outerMetric.percentUsed))
+                    Text(PercentageFormatter.remainingDisplayText(for: snapshot.outerMetric.percentUsed))
                         .monospacedDigit()
                 }
                 .font(.caption)

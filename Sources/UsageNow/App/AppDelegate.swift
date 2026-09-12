@@ -151,9 +151,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate {
             return "\(name)：加载中…"
         }
 
-        let inner = PercentageFormatter.displayText(for: snapshot.innerMetric.percentUsed)
-        let outer = PercentageFormatter.displayText(for: snapshot.outerMetric.percentUsed)
-        var text = "\(name)：\(snapshot.innerMetric.title) \(inner)，\(snapshot.outerMetric.title) \(outer)"
+        let inner = PercentageFormatter.remainingDisplayText(for: snapshot.innerMetric.percentUsed)
+        let outer = PercentageFormatter.remainingDisplayText(for: snapshot.outerMetric.percentUsed)
+        var text = "\(name)：\(snapshot.innerMetric.title)剩余 \(inner)，\(snapshot.outerMetric.title)剩余 \(outer)"
         if includesReset {
             text += "\n5 小时重置：\(ResetTimeFormatter.format(resetAt: snapshot.innerMetric.resetAt))"
             text += "；周额度重置：\(ResetTimeFormatter.format(resetAt: snapshot.outerMetric.resetAt))"
@@ -173,8 +173,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate {
     private func ringProgress(from state: ProviderState) -> (inner: Double, outer: Double)? {
         guard let snapshot = snapshot(from: state) else { return nil }
         return (
-            PercentageFormatter.ringProgress(for: snapshot.innerMetric.percentUsed),
-            PercentageFormatter.ringProgress(for: snapshot.outerMetric.percentUsed)
+            PercentageFormatter.remainingRingProgress(for: snapshot.innerMetric.percentUsed),
+            PercentageFormatter.remainingRingProgress(for: snapshot.outerMetric.percentUsed)
         )
     }
 

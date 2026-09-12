@@ -32,4 +32,21 @@ final class FormattingTests: XCTestCase {
     func testNaNDisplayDash() {
         XCTAssertEqual(PercentageFormatter.displayText(for: Double.nan), "—")
     }
+
+    func testRemainingPercentage() {
+        XCTAssertEqual(PercentageFormatter.remainingDisplayText(for: 42), "58%")
+        XCTAssertEqual(PercentageFormatter.remainingRingProgress(for: 42), 0.58, accuracy: 0.0001)
+    }
+
+    func testRemainingPercentageClampsRingOnly() {
+        XCTAssertEqual(PercentageFormatter.remainingDisplayText(for: -5), "105%")
+        XCTAssertEqual(PercentageFormatter.remainingRingProgress(for: -5), 1)
+        XCTAssertEqual(PercentageFormatter.remainingDisplayText(for: 112), "-12%")
+        XCTAssertEqual(PercentageFormatter.remainingRingProgress(for: 112), 0)
+    }
+
+    func testRemainingNaNDisplayDash() {
+        XCTAssertEqual(PercentageFormatter.remainingDisplayText(for: Double.nan), "—")
+        XCTAssertEqual(PercentageFormatter.remainingRingProgress(for: Double.nan), 0)
+    }
 }

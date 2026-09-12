@@ -25,7 +25,7 @@ struct DoubleRingView: View {
     }
 
     private func ring(progress: Double, diameter: CGFloat, lineWidth: CGFloat, color: Color) -> some View {
-        let warning = progress >= 0.9 && !progress.isNaN
+        let warning = progress <= 0.1 && !progress.isNaN
         let strokeColor = warning ? Color.red : color
         return ZStack {
             Circle()
