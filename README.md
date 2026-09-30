@@ -58,7 +58,7 @@ Cursor 用量接口为客户端内部 API，字段或路径可能随 Cursor 升�
 
 | 现象 | 处理 |
 |------|------|
-| 未找到 Codex | 安装 ChatGPT 或 Codex CLI，并确认 `codex` 可执行 |
+| 未找到 Codex | 安装或更新 ChatGPT / Codex CLI，然后重新构建并启动 UsageNow；应用会检查新版 ChatGPT 应用包中的 Codex CLI 路径 |
 | 未检测到 Cursor 登录 | 在 Cursor 中登录账户后点击刷新 |
 | 数据可能已过期 | 检查网络或稍后刷新；Codex 会自动退避重连 App Server |
 | 退出后仍有 `codex app-server` | 请报告问题；正常退出应终止子进程 |

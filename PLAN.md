@@ -161,11 +161,13 @@ enum ProviderState: Equatable {
 
 按以下顺序查找 Codex 二进制：
 
-1. `/Applications/ChatGPT.app/Contents/Resources/codex`
-2. `/Applications/Codex.app/Contents/Resources/codex`
-3. `/opt/homebrew/bin/codex`
-4. `/usr/local/bin/codex`
-5. 当前进程 `PATH` 中名为 `codex` 的可执行文件
+1. `/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex`
+2. `/Applications/Codex.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex`
+3. `/Applications/ChatGPT.app/Contents/Resources/codex`
+4. `/Applications/Codex.app/Contents/Resources/codex`
+5. `/opt/homebrew/bin/codex`
+6. `/usr/local/bin/codex`
+7. 当前进程 `PATH` 中名为 `codex` 的可执行文件
 
 必须通过 `Process` 直接启动二进制，不通过 shell 拼接命令。
 

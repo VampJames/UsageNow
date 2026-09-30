@@ -5,11 +5,11 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 APP_NAME="UsageNow"
 DIST_APP="${ROOT_DIR}/dist/${APP_NAME}.app"
-BINARY_PATH="${ROOT_DIR}/.build/arm64-apple-macosx/release/${APP_NAME}"
 RESOURCES_SRC="${ROOT_DIR}/Sources/${APP_NAME}/Resources/AppIcon.icns"
 
 cd "${ROOT_DIR}"
 swift build -c release
+BINARY_PATH="$(swift build -c release --show-bin-path)/${APP_NAME}"
 
 rm -rf "${DIST_APP}"
 mkdir -p "${DIST_APP}/Contents/MacOS"
